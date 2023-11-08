@@ -115,6 +115,8 @@ struct PhotinoInitParams
 	bool MediaStreamEnabled;
 	bool SmoothScrollingEnabled;
 
+	//int ToastShortCutPolicy;
+
 	int Size;
 };
 

@@ -89,6 +89,9 @@ Photino::Photino(PhotinoInitParams* initParams)
 		exit(0);
 	}
 
+	//WinToast::ShortcutPolicy policy = static_cast<WinToast::ShortcutPolicy>(initParams->ToastShortCutPolicy);
+	WinToast::instance()->setShortcutPolicy(WinToastLib::WinToast::SHORTCUT_POLICY_IGNORE);
+
 	_windowTitle = new wchar_t[256];
 
 	if (initParams->TitleWide != NULL)
@@ -262,7 +265,7 @@ Photino::Photino(PhotinoInitParams* initParams)
 
 	if (initParams->Topmost)
 		SetTopmost(true);
-
+	
 	this->_toastHandler = new WinToastHandler(this);
 	WinToast::instance()->initialize();
 	_dialog = new PhotinoDialog(this);

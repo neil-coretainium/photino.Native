@@ -600,14 +600,20 @@ HRESULT	WinToast::createShellLinkHelper() {
 	WCHAR	slPath[MAX_PATH]{L'\0'};
     Util::defaultShellLinkPath(_appName, slPath);
     Util::defaultExecutablePath(exePath);
+
+    WCHAR   exeDir[MAX_PATH]{ L'\0' };
+    std::wstring exeDirStr = std::wstring(exePath);
+    errno_t result = wcscat_s(exeDir, MAX_PATH, exeDirStr.substr(0, exeDirStr.find_last_of(L"\\/")).c_str());
+
     ComPtr<IShellLinkW> shellLink;
     HRESULT hr = CoCreateInstance(CLSID_ShellLink, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&shellLink));
+
     if (SUCCEEDED(hr)) {
         hr = shellLink->SetPath(exePath);
         if (SUCCEEDED(hr)) {
             hr = shellLink->SetArguments(L"");
             if (SUCCEEDED(hr)) {
-                hr = shellLink->SetWorkingDirectory(exePath);
+                hr = shellLink->SetWorkingDirectory(exeDir);
                 if (SUCCEEDED(hr)) {
                     ComPtr<IPropertyStore> propertyStore;
                     hr = shellLink.As(&propertyStore);
