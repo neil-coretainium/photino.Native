@@ -305,7 +305,7 @@ Photino::~Photino()
     [_webviewConfiguration release];
     [_webview release];
     [_window performClose: _window];
-    //[NSApp release];
+    [NSApp release];
 }
 
 void Photino::Center()
