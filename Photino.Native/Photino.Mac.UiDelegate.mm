@@ -93,7 +93,7 @@
         type:(WKMediaCaptureType)type 
         decisionHandler:(void (^)(WKPermissionDecision decision))decisionHandler
 {
-    decisionHandler(WKPermissionDecisionPrompt);
+    decisionHandler(WKPermissionDecisionGrant);
 }
 
 - (void)windowDidResize:(NSNotification *)notification {
