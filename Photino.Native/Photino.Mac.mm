@@ -134,6 +134,7 @@ Photino::Photino(PhotinoInitParams* initParams)
 
 	_contextMenuEnabled = true; //not configurable on mac //initParams->ContextMenuEnabled;
 	// _zoom = initParams->Zoom;
+    _grantBrowserPermissions = initParams->GrantBrowserPermissions;
 
 	//these handlers are ALWAYS hooked up
 	_webMessageReceivedCallback = (WebMessageReceivedCallback)initParams->WebMessageReceivedHandler;

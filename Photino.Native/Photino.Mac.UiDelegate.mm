@@ -93,7 +93,9 @@
         type:(WKMediaCaptureType)type 
         decisionHandler:(void (^)(WKPermissionDecision decision))decisionHandler
 {
-    decisionHandler(WKPermissionDecisionGrant);
+    bool grantPermissions;
+    photino->GetGrantBrowserPermissions(&grantPermissions);
+    decisionHandler(grantPermissions ? WKPermissionDecisionGrant : WKPermissionDecisionPrompt);
 }
 
 - (void)windowDidResize:(NSNotification *)notification {
